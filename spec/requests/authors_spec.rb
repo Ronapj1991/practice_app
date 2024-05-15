@@ -15,7 +15,7 @@ RSpec.describe "Authors", type: :request do
   
   describe "GET /authors/:id" do
     it "displays the show page" do
-      author = Author.first
+      author = FactoryBot.create :author
       get author_path(author)
       expect(response).to have_http_status(200)
     end
