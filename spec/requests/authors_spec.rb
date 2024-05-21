@@ -20,4 +20,12 @@ RSpec.describe "Authors", type: :request do
       expect(response).to have_http_status(200)
     end
   end
+
+  describe "GET /authors/new" do
+    it "displays the create page with form" do
+      get new_author_path
+      expect(response).to have_http_status(200)
+      expect(response.body.include?("Create Author")).to be true
+    end
+  end
 end
