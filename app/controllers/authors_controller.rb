@@ -34,7 +34,14 @@ class AuthorsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-  
+
+  def destroy
+    @author = Author.find(params[:id])
+    @author.destroy
+    
+    redirect_to authors_path
+  end
+
   private
     def author_params
       params.require(:author).permit(:name)
