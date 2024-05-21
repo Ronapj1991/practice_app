@@ -48,7 +48,7 @@ RSpec.describe "Authors", type: :request do
   end
 
   describe "PATCH /authors/:id" do
-    it "changes the author name" do
+    it "should change the author name" do
       author = FactoryBot.create :author
       old_name = author.name
       expect {
@@ -58,4 +58,13 @@ RSpec.describe "Authors", type: :request do
     end
   end
 
+  describe "delete an author" do
+    it "should delete an author" do
+      author = FactoryBot.create :author
+
+      expect {
+        delete author_path(author), params: {id: author.id}
+      }.to change(Author, :count).by(-1)
+    end
+  end
 end
