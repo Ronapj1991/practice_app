@@ -2,7 +2,7 @@
 
 <ul>
   <% @author.books.each do |book| %>
-    <%= book.name %>
+    <li><%= book.name %></li>
   <% end %>
 </ul>
 
@@ -10,3 +10,14 @@
   <li><%= link_to "Edit Author Name", edit_author_path(@author) %></li>
   <li><%= link_to "Remove Author", author_path(@author), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></li>
 </ul>
+
+<h2>Add Book</h2>
+<%= form_with model: [@author, @author.books.build] do |form| %>
+<p>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %>
+</p>
+<p>
+  <%= form.submit %>
+</p>
+<% end %>
